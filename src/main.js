@@ -2,8 +2,10 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import VueLogger from 'vuejs-logger';
 
 Vue.config.productionTip = false
+Vue.use(VueLogger, { logLevel: 'debug' });
 
 /* eslint-disable no-new */
 new Vue({
