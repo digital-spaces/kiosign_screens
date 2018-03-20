@@ -56,3 +56,48 @@ export function isMidnight(time) {
   return time && time.hour() === 0 && time.minute() === 0 && time.second() === 0;
 }
 
+/**
+ * Parses a string into a moment representing a time during the day. If the
+ * string is null, undefined or empty, returns undefined.
+ *
+ * @param {string} time The time to parse, in HH:MM:SS format
+ *
+ * @return {moment} A moment representing that time during the day
+ */
+export function parseTime(time) {
+  return time != null && time !== '' ? moment(time, moment.HTML5_FMT.TIME_SECONDS) : undefined;
+}
+
+/**
+ * Parses a string into a moment representing a specific date and time. If the
+ * string is null, undefined or empty, returns undefined.
+ *
+ * @param {string} time The datetime to parse
+ *
+ * @return {moment} A moment representing a specific date and time
+ */
+export function parseDateTime(datetime) {
+  return datetime != null && datetime !== '' ? moment(datetime) : undefined;
+}
+
+/**
+ * Parses an array of day of the week abbreviations into an array of integers
+ * representing those days of the week, where `sun` is 0 and `sat` is 6.
+ *
+ * @param {Array<string>} days An array of string names of days of the week
+ *
+ * @return {Array<integer>} An array of integer days of the week
+ */
+export function parseDays(days) {
+  const daysOfWeek = ['sun', 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat'];
+
+  return days.map((day) => {
+    const dayIndex = daysOfWeek.indexOf(day);
+
+    if (dayIndex === -1) {
+      throw new Error(`Unknown day of the week: ${day}`);
+    }
+
+    return dayIndex;
+  });
+}
