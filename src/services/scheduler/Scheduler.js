@@ -2,6 +2,7 @@ import Vue from 'vue';
 import moment from 'moment';
 import Program from './Program';
 import Eventable from '../../utils/Eventable';
+import { loadSchedules } from '../../utils/api';
 
 /**
  * Finds the highest priority used by the `programs` and filters the array to
@@ -164,6 +165,35 @@ export default class Scheduler extends Eventable {
     }
 
     return moment();
+  }
+
+  /**
+   * Loads the schedules for this scheduler from the URL
+   *
+   * @param {string} url The URL to load the schedules from
+   */
+  async load(url) {
+    Vue.$log.debug('Scheduler', 'Loading program data from', url);
+
+    let programs = await loadSchedules(url);
+
+    programs = programs.map(program => new Program(program));
+
+    Vue.$log.debug('Scheduler', 'Loaded programs', programs);
+
+    // Cancel all existing timers before we reload
+    Object.values(this.timers).forEach(timer => clearTimeout(timer));
+    this.timers = new Map();
+
+    // (re)schedule all the programs
+    this.programs = programs;
+    this.programs.forEach(program => this.schedule(program));
+
+    this.update();
+
+    if (this.refreshRate > 0) {
+      setTimeout(() => this.load(url), this.refreshRate * 1000);
+    }
   }
 
   /**
