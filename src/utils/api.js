@@ -1,6 +1,4 @@
 import Vue from 'vue';
-import moment from 'moment';
-
 /**
  * Deserializes and parses values in a schedule that uses the new API format.
  *
@@ -27,7 +25,7 @@ import { usesAcfFormat, transformAcfData } from './api-acf';
  *
  * @return {Array<object>} An array of schedule objects
  */
-function transformProgramData(data) {
+export function transformProgramData(data) {
   let programs = [];
 
   if (usesAcfFormat(data)) {
@@ -69,9 +67,3 @@ export async function loadPrograms(url) {
 
   return transformProgramData(response.data);
 }
-
-export default {
-  loadScreenInfo,
-  loadPrograms,
-  transformProgramData,
-};
