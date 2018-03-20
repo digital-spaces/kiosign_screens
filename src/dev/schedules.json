@@ -1,0 +1,239 @@
+{
+  "45": {
+    "id": 45,
+    "date": "2018-03-12T21:47:02",
+    "date_gmt": "2018-03-12T21:47:02",
+    "guid": {
+      "rendered": "http://www.abtcomputertech.com/kiosign/?post_type=kiosign_schedules&#038;p=45"
+    },
+    "modified": "2018-03-14T03:21:44",
+    "modified_gmt": "2018-03-14T03:21:44",
+    "slug": "sample-schedule2",
+    "status": "publish",
+    "type": "kiosign_schedules",
+    "link": "http://www.abtcomputertech.com/kiosign/kiosign_schedules/sample-schedule2/",
+    "title": {
+      "rendered": "Sample Schedule2"
+    },
+    "author": 3,
+    "template": "",
+    "acf": {
+      "schedule_repeater": [
+        {
+          "content": {
+            "ID": 336,
+            "post_author": "3",
+            "post_date": "2018-03-14 01:37:20",
+            "post_date_gmt": "2018-03-14 01:37:20",
+            "post_content": "<h2>This is default Content</h2>",
+            "post_title": "Default Slide1",
+            "post_excerpt": "",
+            "post_status": "publish",
+            "comment_status": "closed",
+            "ping_status": "closed",
+            "post_password": "",
+            "post_name": "default-slide1",
+            "to_ping": "",
+            "pinged": "",
+            "post_modified": "2018-03-14 01:40:42",
+            "post_modified_gmt": "2018-03-14 01:40:42",
+            "post_content_filtered": "",
+            "post_parent": 0,
+            "guid": "http://www.abtcomputertech.com/kiosign/kiosign_slides/googleslide-abtct-dept-embed/",
+            "old_guid": "http://www.abtcomputertech.com/kiosign/?post_type=kiosign_slides&#038;p=336",
+            "menu_order": 0,
+            "post_type": "kiosign_slides",
+            "post_mime_type": "",
+            "comment_count": "0",
+            "filter": "raw"
+          },
+          "publish_datetime": "",
+          "unpublish_datetime": "",
+          "play_disable": false,
+          "play_length": "10",
+          "play_days": [
+            "sun",
+            "mon",
+            "tues",
+            "wed",
+            "thurs",
+            "fri",
+            "sat"
+          ],
+          "play_start": "00:00",
+          "play_end": "24:00",
+          "play_exact": false
+        },
+        {
+          "content": {
+            "ID": 289,
+            "post_author": "3",
+            "post_date": "2018-03-13 13:03:32",
+            "post_date_gmt": "2018-03-13 13:03:32",
+            "post_content": "",
+            "post_title": "Gallery Reveal Img as BG",
+            "post_excerpt": "",
+            "post_status": "publish",
+            "comment_status": "closed",
+            "ping_status": "closed",
+            "post_password": "",
+            "post_name": "gallery-reveal-img-as-bg",
+            "to_ping": "",
+            "pinged": "",
+            "post_modified": "2018-03-13 13:03:32",
+            "post_modified_gmt": "2018-03-13 13:03:32",
+            "post_content_filtered": "",
+            "post_parent": 0,
+            "old_guid": "http://www.abtcomputertech.com/kiosign/?post_type=kiosign_slides&#038;p=289",
+            "guid": "http://www.abtcomputertech.com/kiosign/kiosign_slides/googleslide-embed-comics/",
+            "menu_order": 0,
+            "post_type": "kiosign_slides",
+            "post_mime_type": "",
+            "comment_count": "0",
+            "filter": "raw"
+          },
+          "publish_datetime": "",
+          "unpublish_datetime": "",
+          "play_disable": false,
+          "play_length": "120",
+          "play_days": [
+            "mon",
+            "tues",
+            "wed",
+            "thurs",
+            "fri"
+          ],
+          "play_start": "12:00",
+          "play_end": "13:00",
+          "play_exact": false
+        },
+        {
+          "content": {
+            "ID": 135,
+            "post_author": "3",
+            "post_date": "2018-03-13 01:19:09",
+            "post_date_gmt": "2018-03-13 01:19:09",
+            "post_content": "",
+            "post_title": "Google Slide (iframe)",
+            "post_excerpt": "",
+            "post_status": "publish",
+            "comment_status": "closed",
+            "ping_status": "closed",
+            "post_password": "",
+            "post_name": "google-slide-iframe",
+            "to_ping": "",
+            "pinged": "",
+            "post_modified": "2018-03-13 01:32:58",
+            "post_modified_gmt": "2018-03-13 01:32:58",
+            "post_content_filtered": "",
+            "post_parent": 0,
+            "guid": "http://www.abtcomputertech.com/kiosign/?post_type=kiosign_slides&#038;p=135",
+            "menu_order": 0,
+            "post_type": "kiosign_slides",
+            "post_mime_type": "",
+            "comment_count": "0",
+            "filter": "raw"
+          },
+          "publish_datetime": "2018-03-13 00:00:00",
+          "unpublish_datetime": "2018-03-21 00:00:00",
+          "play_disable": false,
+          "play_length": "10",
+          "play_days": [
+            "sun",
+            "mon",
+            "tues",
+            "wed",
+            "thurs",
+            "fri",
+            "sat"
+          ],
+          "play_start": "00:00",
+          "play_end": "24:00",
+          "play_exact": false
+        },
+        {
+          "content": {
+            "ID": 141,
+            "post_author": "3",
+            "post_date": "2018-03-13 01:35:31",
+            "post_date_gmt": "2018-03-13 01:35:31",
+            "post_content": "",
+            "post_title": "GoogleSlide (embed) Comics",
+            "post_excerpt": "",
+            "post_status": "publish",
+            "comment_status": "closed",
+            "ping_status": "closed",
+            "post_password": "",
+            "post_name": "googleslide-embed-comics",
+            "to_ping": "",
+            "pinged": "",
+            "post_modified": "2018-03-13 01:38:41",
+            "post_modified_gmt": "2018-03-13 01:38:41",
+            "post_content_filtered": "",
+            "post_parent": 0,
+            "guid": "http://www.abtcomputertech.com/kiosign/?post_type=kiosign_slides&#038;p=141",
+            "menu_order": 0,
+            "post_type": "kiosign_slides",
+            "post_mime_type": "",
+            "comment_count": "0",
+            "filter": "raw"
+          },
+          "publish_datetime": "",
+          "unpublish_datetime": "",
+          "play_disable": false,
+          "play_length": "60",
+          "play_days": [
+            "mon",
+            "tues",
+            "wed",
+            "thurs",
+            "fri"
+          ],
+          "play_start": "13:00",
+          "play_end": "14:00",
+          "play_exact": true
+        }
+      ]
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "http://www.abtcomputertech.com/kiosign/wp-json/wp/v2/kiosign_schedules/45"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http://www.abtcomputertech.com/kiosign/wp-json/wp/v2/kiosign_schedules"
+        }
+      ],
+      "about": [
+        {
+          "href": "http://www.abtcomputertech.com/kiosign/wp-json/wp/v2/types/kiosign_schedules"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "http://www.abtcomputertech.com/kiosign/wp-json/wp/v2/users/3"
+        }
+      ],
+      "version-history": [
+        {
+          "href": "http://www.abtcomputertech.com/kiosign/wp-json/wp/v2/kiosign_schedules/45/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "http://www.abtcomputertech.com/kiosign/wp-json/wp/v2/media?parent=45"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+}
