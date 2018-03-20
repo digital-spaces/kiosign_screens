@@ -9,5 +9,16 @@
       },
       "screen_refresh": "15"
     }
+  },
+  "10": {
+    "acf": {
+      "screen_content": {
+        "ID": 10,
+        "post_name": "nccia-schedules-imacs",
+        "guid": "http://www.abtcomputertech.com/kiosign/?post_type=kiosign_schedules&#038;p=10",
+        "post_type": "kiosign_schedules"
+      },
+      "screen_refresh": "1"
+    }
   }
 }

@@ -1,4 +1,61 @@
 {
+  "10": {
+    "programs": [{
+      "type": "iframe",
+      "url": "http://localhost:8080/screen-app/test-slide.html?blue",
+      "schedule": {
+        "days": ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"],
+        "startTime": "00:00",
+        "endTime": "24:00"
+      },
+      "options": {
+        "enabled": true,
+        "length": 10
+      }
+    }, {
+      "type": "iframe",
+      "url": "http://localhost:8080/screen-app/test-slide.html?yellow",
+      "schedule": {
+        "days": ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"],
+        "startTime": "00:00",
+        "endTime": "24:00"
+      },
+      "options": {
+        "enabled": true,
+        "length": 10
+      }
+    }, {
+      "type": "iframe",
+      "url": "http://localhost:8080/screen-app/test-slide.html?red",
+      "priority": 10,
+      "schedule": {
+        "days": ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"],
+        "startTime": "00:00",
+        "endTime": "24:00",
+
+        "startDateTime": "2018-03-20 14:00:00",
+        "endDateTime": "2018-03-20 16:58:00"
+      },
+      "options": {
+       "length": 10
+      }
+    }, {
+      "type": "iframe",
+      "url": "http://localhost:8080/screen-app/test-slide.html?green",
+      "priority": 10,
+      "schedule": {
+        "days": ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"],
+        "startTime": "00:00",
+        "endTime": "24:00",
+
+        "startDateTime": "2018-03-20 14:20:00",
+        "endDateTime": "2018-03-20 16:58:00"
+      },
+      "options": {
+        "length": 10
+      }
+    }]
+  },
   "45": {
     "id": 45,
     "date": "2018-03-12T21:47:02",
