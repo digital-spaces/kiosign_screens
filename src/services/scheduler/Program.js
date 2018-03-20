@@ -229,9 +229,12 @@ export default class Program {
      */
     return program &&
       program.url === this.url &&
-      program.type === this.type &&
-      program.priority === this.priority &&
-      program.schedule.startDateTime === this.schedule.startDateTime &&
-      program.schedule.endDateTime === this.schedule.endDateTime;
+      program.type === this.type;
+
+    // TODO: Active these once I have more time to test them. [twl 20.Mar.18]
+    //
+    // program.priority === this.priority &&
+    // program.schedule.startDateTime === this.schedule.startDateTime &&
+    // program.schedule.endDateTime === this.schedule.endDateTime;
   }
 }
