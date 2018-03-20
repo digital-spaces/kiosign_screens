@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 /**
  * Returns `currentDay` if it exists in `days`, otherwise the next day in after
  * `currentDay` that exists in `days`. For the integer value, Sunday is day 0
@@ -65,6 +67,10 @@ export function isMidnight(time) {
  * @return {moment} A moment representing that time during the day
  */
 export function parseTime(time) {
+  if (moment.isMoment(time)) {
+    return moment(time);
+  }
+
   return time != null && time !== '' ? moment(time, moment.HTML5_FMT.TIME_SECONDS) : undefined;
 }
 
@@ -92,7 +98,7 @@ export function parseDays(days) {
   const daysOfWeek = ['sun', 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat'];
 
   return days.map((day) => {
-    const dayIndex = daysOfWeek.indexOf(day);
+    const dayIndex = typeof day === 'string' ? daysOfWeek.indexOf(day) : day;
 
     if (dayIndex === -1) {
       throw new Error(`Unknown day of the week: ${day}`);
