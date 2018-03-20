@@ -11,6 +11,18 @@ function parseInt(number) {
 }
 
 /**
+ * Converts empty strings to undefined; if the value is not an empty string,
+ * does nothing.
+ *
+ * @param {string} value A value to convert to undefined
+ *
+ * @return {string} The value, or undefined if the value was an empty string
+ */
+function convertBlanks(value) {
+  return value !== '' ? value : undefined;
+}
+
+/**
  * Fixes formatting issues with the GUID from the API.
  *
  * @param {string} guid The value of the `guid` field
@@ -53,12 +65,12 @@ export function transformAcfProgram(program) {
     schedule: {
       // The days and times to schedule the content if repeating
       days: program.play_days,
-      startTime: program.play_start,
-      endTime: program.play_end,
+      startTime: convertBlanks(program.play_start),
+      endTime: convertBlanks(program.play_end),
 
       // Specific start and end times to play the content
-      startDateTime: program.publish_datetime,
-      endDateTime: program.unpublish_datetime,
+      startDateTime: convertBlanks(program.publish_datetime),
+      endDateTime: convertBlanks(program.unpublish_datetime),
     },
 
     // Options for playing the content
