@@ -29,44 +29,6 @@ export function filterByHighestPriority(programs) {
   return filtered;
 }
 
-function rotateProgram(programs, index, callback) {
-  const currentProgram = programs[index];
-  const nextIndex = (index + 1) % programs.length;
-  const timerTracker = {};
-
-  timerTracker.id = setTimeout(() => {
-    timerTracker.id = rotateProgram(programs, nextIndex, callback);
-  }, currentProgram.options.length * 1000);
-
-  callback(currentProgram);
-
-  return timerTracker;
-}
-
-/**
- * Rotates through each of the programs, letting each program play for the
- * number of seconds defined by `options.length` then calling the
- * callback when the program changes.
- *
- * @param {Array}    programs [description]
- * @param {Function} callback [description]
- *
- * @return {object} A tracker object used to stop the rotation later
- */
-export function startRotate(programs, callback) {
-  if (!programs || !programs.length) {
-    return undefined;
-  }
-
-  return rotateProgram(programs, 0, callback);
-}
-
-export function stopRotate(timerTracker) {
-  if (timerTracker) {
-    clearTimeout(timerTracker.id);
-  }
-}
-
 /**
  * A class used to schedule programs.
  *
