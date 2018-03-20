@@ -18,10 +18,10 @@ export function filterByHighestPriority(programs) {
   let priority = 0;
 
   programs.forEach((program) => {
-    if (program.schedule.priority && program.schedule.priority > priority) {
+    if (program.priority && program.priority > priority) {
       filtered = [program];
-      priority = program.schedule.priority;
-    } else if (priority === 0 || program.schedule.priority === priority) {
+      priority = program.priority;
+    } else if (priority === 0 || program.priority === priority) {
       filtered.push(program);
     }
   });
