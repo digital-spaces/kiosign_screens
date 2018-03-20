@@ -1,5 +1,7 @@
 <template>
   <div class="layout layout-default">
+    <h1 v-if="programs.length === 0">No Programs Are Currently Active</h1>
+
     <IFramePlayer :class="{ inactive: !player1Active, player: true }" :source="player1Url" />
     <IFramePlayer :class="{ inactive: player1Active, player: true }" :source="player2Url" />
   </div>
@@ -88,6 +90,14 @@ export default {
   width: 100vw;
   height: 100vh;
   background: #000;
+}
+
+h1 {
+  position: absolute;
+  width: 100vw;
+  font-family: arial,helvetica,sans-serif;
+  text-align: center;
+  color: #FFF;
 }
 
 .player {
