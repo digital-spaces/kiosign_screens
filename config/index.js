@@ -8,7 +8,7 @@ module.exports = {
   dev: {
 
     // Paths
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: 'screen-app',
     assetsPublicPath: '/',
     proxyTable: {},
 
@@ -45,12 +45,12 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, '../dist/kiosign_screens.php'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsSubDirectory: 'screen-app',
+    assetsPublicPath: '/kiosign/wp-content/themes/kiosign-dev6/kiosign/',
 
     /**
      * Source Maps
