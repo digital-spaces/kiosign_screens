@@ -215,4 +215,23 @@ export default class Program {
        (!nextRun.startAt || nextRun.startAt.isSameOrBefore(scheduleTime)) &&
        (!nextRun.endAt || nextRun.endAt.isAfter(scheduleTime));
   }
+
+  /**
+   * Returns true if `program` is equivalent to this program.
+   */
+  isEquivalent(program) {
+    /**
+     * TODO: Add support for comparing schedule `days`, `startTime` and
+     *       `endTime`, which may require special comparators. Also consider
+     *       renaming this `hasEquivalentSchedule` or splitting into
+     *       `isSameSchedule` and `isSamePlayer`--the latter for `url` and
+     *       `type`. Options may not be relevant for comparison. [twl 20.Mar.18]
+     */
+    return program &&
+      program.url === this.url &&
+      program.type === this.type &&
+      program.priority === this.priority &&
+      program.schedule.startDateTime === this.schedule.startDateTime &&
+      program.schedule.endDateTime === this.schedule.endDateTime;
+  }
 }
