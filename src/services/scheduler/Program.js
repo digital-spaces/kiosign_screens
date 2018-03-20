@@ -173,6 +173,8 @@ export default class Program {
           baseTime = schedule.startDateTime;
         }
 
+        // TODO: Investigate whether this returns a time in the past if the schedule
+        //       is set with a specific startDateTime for the past. [twl 20.Mar.18]
         nextRun.startAt = getNextDateTime(schedule.days, schedule.startTime, baseTime, 'future');
       } else {
         nextRun.startAt = schedule.startDateTime;
@@ -203,8 +205,9 @@ export default class Program {
       //
 
       // Disable the schedule after the schedule time
-      nextRun.isExpired = schedule.endDateTime != null &&
-                          nextRun.startAt.isAfter(schedule.endDateTime);
+      nextRun.isExpired = (schedule.endDateTime != null &&
+                           nextRun.startAt.isAfter(schedule.endDateTime)) ||
+                          (nextRun.endAt && nextRun.endAt.isBefore(scheduleTime));
     }
 
     this.nextRun = nextRun;
