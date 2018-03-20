@@ -3,9 +3,18 @@
 import Vue from 'vue'
 import App from './App'
 import VueLogger from 'vuejs-logger';
+import VueResource from 'vue-resource';
+import VueResourceMock from 'vue-resource-mock';
 
 Vue.config.productionTip = false
 Vue.use(VueLogger, { logLevel: 'debug' });
+Vue.use(VueResource);
+
+if (process.env.NODE_ENV === 'development') {
+  /* eslint-disable global-require */
+  Vue.use(VueResourceMock, require('./dev/mocks').default, { silent: false });
+  /* eslint-enable global-require */
+}
 
 /* eslint-disable no-new */
 new Vue({
