@@ -2,7 +2,7 @@ import Vue from 'vue';
 import moment from 'moment';
 import Program from './Program';
 import Eventable from '../../utils/Eventable';
-import { loadSchedules } from '../../utils/api';
+import { loadPrograms } from '../../utils/api';
 
 /**
  * Finds the highest priority used by the `programs` and filters the array to
@@ -36,7 +36,7 @@ function rotateProgram(programs, index, callback) {
 
   timerTracker.id = setTimeout(() => {
     timerTracker.id = rotateProgram(programs, nextIndex, callback);
-  }, currentProgram.schedule.options.length * 1000);
+  }, currentProgram.options.length * 1000);
 
   callback(currentProgram);
 
@@ -45,7 +45,7 @@ function rotateProgram(programs, index, callback) {
 
 /**
  * Rotates through each of the programs, letting each program play for the
- * number of seconds defined by `schedule.options.length` then calling the
+ * number of seconds defined by `options.length` then calling the
  * callback when the program changes.
  *
  * @param {Array}    programs [description]
@@ -175,7 +175,7 @@ export default class Scheduler extends Eventable {
   async load(url) {
     Vue.$log.debug('Scheduler', 'Loading program data from', url);
 
-    let programs = await loadSchedules(url);
+    let programs = await loadPrograms(url);
 
     programs = programs.map(program => new Program(program));
 
