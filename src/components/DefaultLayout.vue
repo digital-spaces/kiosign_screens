@@ -7,7 +7,8 @@
 
 <script>
 import IFramePlayer from './IFramePlayer';
-import { filterByHighestPriority, startRotate, stopRotate } from '../services/scheduler/Scheduler';
+import Rotater from '../services/scheduler/Rotater';
+import { filterByHighestPriority } from '../services/scheduler/Scheduler';
 
 export default {
   name: 'DefaultLayout',
@@ -21,8 +22,9 @@ export default {
       player1Url: '',
       player2Url: '',
       player1Active: true,
-      timerTracker: undefined,
       displayDelay: 3000,
+      rotater: null,
+      timer: null,
     };
   },
   calculated: {
@@ -40,31 +42,38 @@ export default {
 
       this.$log.debug('DefaultLayout', 'Loaded programs', programs);
 
-      stopRotate(this.timerTracker);
+      if (!this.rotater) {
+        this.rotater = new Rotater();
 
-      // If we only have a single program, don't rotate programs
-      if (programs.length === 1) {
-        this.player1Url = programs[0].url;
-        this.player1Active = true;
-        return;
+        this.rotater.on('activate', (program) => {
+          this.$log.debug('DefaultLayout', 'Loading content from URL', program.url);
+
+          // Cancel any display that is in progress in favor of this one
+          if (this.timer) {
+            clearTimeout(this.timer);
+            this.timer = null;
+          }
+
+          // If player 1 is actively playing content, load the new content into
+          // player 2, then wait to display it
+          if (this.player1Active) {
+            this.player2Url = program.url;
+          } else {
+            this.player1Url = program.url;
+          }
+
+          // Delay showing the actual content to allow it to load first
+          //
+          // TODO: Attach a listener to the frame to use the 'load' event or
+          //       similar to handle this. [twl 20.Mar.18]
+          this.timer = setTimeout(() => {
+            this.$log.debug('DefaultLayout', 'Displaying content from URL', program.url);
+            this.player1Active = !this.player1Active;
+            this.timer = null;
+          }, this.displayDelay);
+        });
       }
-
-      this.timerTracker = startRotate(programs, (program) => {
-        this.$log.debug('DefaultLayout', 'Loading content from URL', program.url);
-
-        // If player 1 is actively playing content, load the new content into
-        // player 2, then wait to display it
-        if (this.player1Active) {
-          this.player2Url = program.url;
-        } else {
-          this.player1Url = program.url;
-        }
-
-        setTimeout(() => {
-          this.$log.debug('DefaultLayout', 'Displaying content from URL', program.url);
-          this.player1Active = !this.player1Active;
-        }, this.displayDelay);
-      });
+      this.rotater.updatePrograms(programs);
     },
   },
   components: {
