@@ -131,7 +131,7 @@ export default class Program {
   constructor(config) {
     Object.assign(this, parseProgram(config));
 
-    if (this.options && this.options.enabled) {
+    if (this.options && typeof this.options.enabled !== 'undefined') {
       this.isEnabled = this.options.enabled;
     }
   }
