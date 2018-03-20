@@ -9,5 +9,13 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   components: { App },
-  template: '<App/>'
-})
+  template: '<App :apiBase="apiBase" :screenId="screenId" />',
+  data: {
+    apiBase: '',
+    screenId: '',
+  },
+  beforeMount() {
+    this.apiBase = loadConfig.call(this, 'data-api-base', '/wp-json/acf/v3/');
+    this.screenId = loadConfig.call(this, 'data-screen-id', '1');
+  },
+});
