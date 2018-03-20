@@ -1,23 +1,60 @@
 <template>
-  <div id="app">
-  </div>
+  <DefaultLayout :programs="activePrograms" />
 </template>
 
 <script>
+import DefaultLayout from './components/DefaultLayout';
+import Scheduler from './services/scheduler/Scheduler';
+import { loadScreenInfo } from './utils/api';
+
 export default {
   name: 'App',
+  props: {
+    apiBase: {
+      type: String,
+    },
+    screenId: {
+      type: String,
+    },
+  },
+  data() {
+    return {
+      scheduler: new Scheduler(),
+      activePrograms: [],
+    };
+  },
   components: {
-  }
-}
+    DefaultLayout,
+  },
+  mounted() {
+    loadScreenInfo(this.apiBase, this.screenId).then((response) => {
+      if (!response || !response.acf) {
+        throw new Error(`Could not load info for screen ${this.screenid}`);
+      }
+
+      const acf = response.acf;
+      const refreshRate = Number.parseInt(acf.screen_refresh, 10);
+      const scheduleId = acf.screen_content && acf.screen_content.ID;
+      const scheduleUrl = `${this.apiBase}kiosign_schedules/${scheduleId}`;
+
+      if (refreshRate) {
+        this.scheduler.refreshRate = refreshRate * 60;
+        this.$log.debug('App', `Scheduler refresh rate: ${refreshRate}`);
+      }
+
+      this.scheduler.on('update', () => {
+        this.activePrograms = this.scheduler.activePrograms;
+        this.$log.debug('App', 'updated active programs', this.activePrograms);
+      });
+
+      this.scheduler.load(scheduleUrl);
+    });
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  margin: 0;
 }
 </style>
