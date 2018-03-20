@@ -1,20 +1,4 @@
 import Vue from 'vue';
-/**
- * Deserializes and parses values in a schedule that uses the new API format.
- *
- * @param {object} schedule The schedule to parse
- *
- * @return {object} The schedule with values deserialized
- */
-function parseSchedule(schedule) {
-  return Object.assign({}, schedule, {
-    days: parseDays(schedule.days),
-    startTime: parseTime(schedule.startTime),
-    endTime: parseTime(schedule.endTime),
-    startDateTime: parseDateTime(schedule.startDateTime),
-    endDateTime: parseDateTime(schedule.endDateTime),
-  });
-}
 import { usesAcfFormat, transformAcfData } from './api-acf';
 
 /**
@@ -35,8 +19,6 @@ export function transformProgramData(data) {
   } else {
     throw new Error('No schedule data exists in response from server');
   }
-
-  schedules = schedules.map(parseSchedule);
 
   return programs;
 }

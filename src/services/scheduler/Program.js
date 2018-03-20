@@ -1,5 +1,13 @@
 import moment from 'moment';
-import { getFutureDay, getPastDay, setTime, isMidnight } from '../../utils/date';
+import {
+  getFutureDay,
+  getPastDay,
+  setTime,
+  isMidnight,
+  parseTime,
+  parseDateTime,
+  parseDays,
+} from '../../utils/date';
 
 /**
  * Returns true if a schedule is always active; false otherwise. A schedule is
@@ -75,17 +83,57 @@ function getNextDateTime(days, time, scheduleTime, direction) {
 }
 
 /**
+ * Deserializes and parses values in a program that uses the new API format.
+ *
+ * @param {object} program The program to parse
+ *
+ * @return {object} The program with values deserialized
+ */
+function parseProgram(program) {
+  const schedule = (program && program.schedule) || {};
+  const allDays = ['sun', 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat'];
+
+  return Object.assign({}, program, {
+    schedule: {
+      days: parseDays(schedule.days || allDays),
+      startTime: parseTime(schedule.startTime || '00:00'),
+      endTime: parseTime(schedule.endTime || '24:00'),
+      startDateTime: parseDateTime(schedule.startDateTime),
+      endDateTime: parseDateTime(schedule.endDateTime),
+    },
+  });
+}
+
+
+/**
  * Represents a program that is set to run on a schedule.
  */
 export default class Program {
-  constructor(config) {
-    Object.assign(this, config);
+  /**
+   * Whether this program is enabled.
+   *
+   * @type {Boolean}
+   */
+  isEnabled = true;
 
-    // TODO: Fix the incoming format and make this only have the schedule.
-    //       [twl 17.Mar.18]
-    this.schedule = config;
-    this.isEnabled = config.options.enabled;
-    this.isActive = false;
+  /**
+   * Whether this program is active.
+   *
+   * @type {Boolean}
+   */
+  isActive = false;
+
+  /**
+   * Constructs a new program using the given configuration information.
+   *
+   * @param {object} config Initial settings for the program
+   */
+  constructor(config) {
+    Object.assign(this, parseProgram(config));
+
+    if (this.options && this.options.enabled) {
+      this.isEnabled = this.options.enabled;
+    }
   }
 
   /**
