@@ -2,7 +2,7 @@
   "10": {
     "programs": [{
       "type": "iframe",
-      "url": "http://localhost:8080/screen-app/test-slide.html?blue",
+      "url": "http://localhost:9000/screen-app/test-slide.html?blue",
       "schedule": {
         "days": ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"],
         "startTime": "00:00",
@@ -14,7 +14,7 @@
       }
     }, {
       "type": "iframe",
-      "url": "http://localhost:8080/screen-app/test-slide.html?yellow",
+      "url": "http://localhost:9000/screen-app/test-slide.html?yellow",
       "schedule": {
         "days": ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"],
         "startTime": "00:00",
@@ -26,7 +26,7 @@
       }
     }, {
       "type": "iframe",
-      "url": "http://localhost:8080/screen-app/test-slide.html?red",
+      "url": "http://localhost:9000/screen-app/test-slide.html?red",
       "priority": 10,
       "schedule": {
         "days": ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"],
@@ -41,7 +41,7 @@
       }
     }, {
       "type": "iframe",
-      "url": "http://localhost:8080/screen-app/test-slide.html?green",
+      "url": "http://localhost:9000/screen-app/test-slide.html?green",
       "priority": 10,
       "schedule": {
         "days": ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"],
