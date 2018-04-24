@@ -203,6 +203,10 @@ export default class Program {
       // Handle when start & end time are both the same (e.g. `00:00` and `24:00`)
       if (nextRun.startAt.isSame(nextRun.endAt)) {
         nextRun.endAt.add(1, 'days');
+
+        if (schedule.endDateTime && schedule.endDateTime.isBefore(nextRun.endAt)) {
+          nextRun.endAt = schedule.endDateTime;
+        }
       }
 
       // Disable the schedule after the schedule time
