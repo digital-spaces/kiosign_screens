@@ -49,6 +49,8 @@ export default {
       this.$log.debug('DefaultLayout', 'Loaded programs', this.activePrograms);
 
       if (!this.rotater) {
+        let firstRun = true;
+
         this.rotater = new Rotater();
 
         this.rotater.on('activate', (program) => {
@@ -76,7 +78,9 @@ export default {
             this.$log.debug('DefaultLayout', 'Displaying content from URL', program.url);
             this.player1Active = !this.player1Active;
             this.timer = null;
-          }, this.displayDelay);
+          }, firstRun ? 0 : this.displayDelay);
+
+          firstRun = false;
         });
       }
 
