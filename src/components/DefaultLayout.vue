@@ -97,7 +97,7 @@ h1 {
   width: 100vw;
   font-family: arial,helvetica,sans-serif;
   text-align: center;
-  color: #FFF;
+  color: #444;
 }
 
 .player {
