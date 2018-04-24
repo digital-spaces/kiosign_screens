@@ -30,13 +30,6 @@ export default {
       timer: null,
     };
   },
-  calculated: {
-    player1Class: {
-      get() {
-        return {
-          hidden: !this.player1Active,
-        };
-      },
   methods: {
     /**
      * Sets the URL property to undefined if the URL does not exist on one of the active programs.
