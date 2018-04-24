@@ -200,9 +200,10 @@ export default class Program {
         nextRun.startAt = getNextDateTime(schedule.days, schedule.startTime, baseTime, 'past');
       }
 
-      // TODO: Might need to handle midnight condition where start & end times are both midnight
-      //       Also test when both times are the same, but not midnight (e.g. 3:00)
-      //
+      // Handle when start & end time are both the same (e.g. `00:00` and `24:00`)
+      if (nextRun.startAt.isSame(nextRun.endAt)) {
+        nextRun.endAt.add(1, 'days');
+      }
 
       // Disable the schedule after the schedule time
       nextRun.isExpired = (schedule.endDateTime != null &&
