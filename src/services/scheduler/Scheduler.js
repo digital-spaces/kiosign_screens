@@ -30,6 +30,13 @@ export function filterByHighestPriority(programs) {
 }
 
 /**
+ * The maximum valid value for `setTimeout`, equal to MAX_INT32=(2^31-1)
+ *
+ * @type {number}
+ */
+const MAXIMUM_TIMEOUT = 0x7FFFFFFF;
+
+/**
  * A class used to schedule programs.
  *
  * # Events
@@ -183,10 +190,15 @@ export default class Scheduler extends Eventable {
     }
 
     const nextUpdateAt = program.isActive ? program.nextRun.endAt : program.nextRun.startAt;
-    const timeUntilNextUpdate = nextUpdateAt - scheduleTime;
+
+    let timeUntilNextUpdate = nextUpdateAt - scheduleTime;
 
     if (!nextUpdateAt) {
       return;
+    }
+
+    if (timeUntilNextUpdate > MAXIMUM_TIMEOUT) {
+      timeUntilNextUpdate = MAXIMUM_TIMEOUT;
     }
 
     // TODO: Write unit tests to test this more thoroughly and then add this as
@@ -203,9 +215,14 @@ export default class Scheduler extends Eventable {
       // Remove the old timer reference so we don't try to cancel it later
       delete this.timers[program];
 
-      this.fire(event, program);
-      this.schedule(program);
-      this.update();
+      if (timeUntilNextUpdate < MAXIMUM_TIMEOUT) {
+        this.fire(event, program);
+        this.schedule(program);
+        this.update();
+      } else {
+        // Just reschedule if the time was so far in the future that we exceeded the max timeout
+        this.schedule(program);
+      }
     }, timeUntilNextUpdate);
   }
 
