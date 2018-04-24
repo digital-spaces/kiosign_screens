@@ -115,9 +115,9 @@ describe('transformAcfProgram is a function that', () => {
     expect(transformAcfProgram(data)).toMatchObject({
       priority: 10,
       schedule: {
-        days: ['sun', 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat'],
-        startTime: '00:00',
-        endTime: '24:00',
+        days: ['thurs'],
+        startTime: '01:00',
+        endTime: '02:00',
 
         startDateTime: '2018-03-13 00:00:00',
         endDateTime: '2018-03-21 00:00:00',
@@ -133,10 +133,6 @@ describe('transformAcfProgram is a function that', () => {
     expect(transformAcfProgram(data)).toMatchObject({
       priority: 10,
       schedule: {
-        days: ['sun', 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat'],
-        startTime: '00:00',
-        endTime: '24:00',
-
         startDateTime: '2018-03-13 00:00:00',
         endDateTime: '2018-03-21 00:00:00',
       },
