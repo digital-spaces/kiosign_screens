@@ -12,6 +12,7 @@
   },
   "10": {
     "acf": {
+      "layout": "split",
       "screen_content": {
         "ID": 10,
         "post_name": "nccia-schedules-imacs",
