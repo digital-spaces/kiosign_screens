@@ -101,7 +101,7 @@ export default class Scheduler extends Eventable {
     this.debugTime = time;
     this.debugTimeSetAt = moment();
 
-    // need to reschedule all programs
+    this.scheduleAll();
   }
 
   /**
@@ -111,6 +111,8 @@ export default class Scheduler extends Eventable {
   clearDebugTime() {
     this.debugTime = undefined;
     this.debugTimeSetAt = undefined;
+
+    this.scheduleAll();
   }
 
   /**
@@ -123,7 +125,7 @@ export default class Scheduler extends Eventable {
     if (this.debugTime) {
       const elapsed = moment() - this.debugTimeSetAt;
 
-      return moment().add(elapsed, 'ms');
+      return moment(this.debugTime).add(elapsed, 'ms');
     }
 
     return moment();
@@ -149,9 +151,7 @@ export default class Scheduler extends Eventable {
 
     // (re)schedule all the programs
     this.programs = programs;
-    this.programs.forEach(program => this.schedule(program));
-
-    this.update();
+    this.scheduleAll();
 
     if (this.refreshRate > 0) {
       setTimeout(() => this.load(url), this.refreshRate * 1000);
@@ -159,9 +159,17 @@ export default class Scheduler extends Eventable {
   }
 
   /**
-   * [schedule description]
-   * @param  {[type]} program [description]
-   * @return {[type]}         [description]
+   * Schedules all programs configured for this scheduler and fires an `update` event when done.
+   */
+  scheduleAll() {
+    this.programs.forEach(program => this.schedule(program));
+    this.update();
+  }
+
+  /**
+   * Schedules the next run of the `program` using the current schedule time.
+   *
+   * @param {Program} program The program to schedule
    */
   schedule(program) {
     const scheduleTime = this.getScheduleTime();
