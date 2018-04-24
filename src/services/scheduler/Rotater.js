@@ -69,6 +69,8 @@ export default class Rotater extends Eventable {
    * @param {object} program The program to activate
    */
   activateProgram() {
+    const oldProgram = this.programs[this.currentIndex];
+
     this.currentIndex = this.programs.length ? (this.currentIndex + 1) % this.programs.length : -1;
 
     const program = this.programs[this.currentIndex];
@@ -79,7 +81,7 @@ export default class Rotater extends Eventable {
       this.timer = undefined;
     }
 
-    if (program) {
+    if (program && !program.isEquivalent(oldProgram)) {
       this.fire('activate', program);
 
       // Only schedule the rotater if we have more than one program
