@@ -37,6 +37,16 @@ export default {
           hidden: !this.player1Active,
         };
       },
+  methods: {
+    /**
+     * Sets the URL property to undefined if the URL does not exist on one of the active programs.
+     *
+     * @param  {string} urlProperty The player URL property to change, e.g. `player1Url`
+     */
+    clearIfInactive(urlProperty) {
+      if (!this.activePrograms.find(program => program.url === this[urlProperty])) {
+        this[urlProperty] = undefined;
+      }
     },
   },
   watch: {
@@ -78,6 +88,9 @@ export default {
       }
 
       this.rotater.updatePrograms(this.activePrograms);
+
+      this.clearIfInactive('player1Url');
+      this.clearIfInactive('player2Url');
     },
   },
   components: {
