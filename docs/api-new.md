@@ -20,6 +20,10 @@ layout
   include: `default` or `split`. If blank or contains an invalid value, defaults
   to the `default` layout.
 
+server_time
+: The current time on the server. Used to synchronize multiple screens so they use the same
+  schedule time.
+
 
 Programs
 --------

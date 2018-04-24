@@ -68,6 +68,22 @@ export default class Scheduler extends Eventable {
   debugTimeSetAt = undefined;
 
   /**
+   * The base time from the server used to synchronize multiple screens. Use
+   * `setServerTime` to set this time and activate server-time mode and
+   * `clearServerTime` to exit server-time mode.
+   *
+   * @type {moment}
+   */
+  serverTime = undefined;
+
+  /**
+   * The time when the `serverTime` was last set.
+   *
+   * @type {moment}
+   */
+  serverTimeSetAt = undefined;
+
+  /**
    * The list of potential programs this scheduler can schedule.
    *
    * @type {Array}
@@ -123,16 +139,48 @@ export default class Scheduler extends Eventable {
   }
 
   /**
+   * Sets the server time to `time`. This activates server-time mode and makes the
+   * schedule time continue to move forward from this time (e.g. if you set this
+   * to 13:00 and wait five minutes, the schedule time will be 13:05).
+   *
+   * @param {moment} time The time to set as the base time for the server time
+   */
+  setServerTime(time) {
+    this.serverTime = time;
+    this.serverTimeSetAt = moment();
+
+    this.scheduleAll();
+  }
+
+  /**
+   * Clears the server time and exits server-time mode. After calling this method, the
+   * schedule time used by this class will be the current time.
+   */
+  clearServerTime() {
+    this.serverTime = undefined;
+    this.serverTimeSetAt = undefined;
+
+    this.scheduleAll();
+  }
+
+  /**
    * Returns the current schedule time for this scheduler. This is the time used
    * to calculate what programs are active.
    *
    * @return {moment} The current schedule time
    */
   getScheduleTime() {
+    // debugTime takes precedence
     if (this.debugTime) {
       const elapsed = moment() - this.debugTimeSetAt;
 
       return moment(this.debugTime).add(elapsed, 'ms');
+    }
+
+    if (this.serverTime) {
+      const elapsed = moment() - this.serverTimeSetAt;
+
+      return moment(this.serverTime).add(elapsed, 'ms');
     }
 
     return moment();

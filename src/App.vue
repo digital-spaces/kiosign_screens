@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import DebugPane from './components/DebugPane';
 import DefaultLayout from './components/DefaultLayout';
 import SplitLayout from './components/SplitLayout';
@@ -53,6 +54,10 @@ export default {
       if (refreshRate) {
         this.scheduler.refreshRate = refreshRate * 60;
         this.$log.debug('App', `Scheduler refresh rate: ${refreshRate}`);
+      }
+
+      if (acf.server_time) {
+        this.scheduler.setServerTime(moment(acf.server_time));
       }
 
       this.scheduler.on('update', () => {
