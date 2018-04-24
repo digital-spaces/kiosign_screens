@@ -1,6 +1,6 @@
 <template>
   <div class="layout layout-default">
-    <h1 v-if="programs.length === 0">No Programs Are Currently Active</h1>
+    <h1 v-if="activePrograms && activePrograms.length === 0">No Programs Are Currently Active</h1>
 
     <IFramePlayer :class="{ inactive: !player1Active, player: true }" :source="player1Url" />
     <IFramePlayer :class="{ inactive: player1Active, player: true }" :source="player2Url" />
@@ -21,6 +21,7 @@ export default {
   },
   data() {
     return {
+      activePrograms: undefined,
       player1Url: '',
       player2Url: '',
       player1Active: true,
@@ -40,9 +41,9 @@ export default {
   },
   watch: {
     programs(value) {
-      const programs = filterByHighestPriority(value);
+      this.activePrograms = filterByHighestPriority(value);
 
-      this.$log.debug('DefaultLayout', 'Loaded programs', programs);
+      this.$log.debug('DefaultLayout', 'Loaded programs', this.activePrograms);
 
       if (!this.rotater) {
         this.rotater = new Rotater();
@@ -75,7 +76,8 @@ export default {
           }, this.displayDelay);
         });
       }
-      this.rotater.updatePrograms(programs);
+
+      this.rotater.updatePrograms(this.activePrograms);
     },
   },
   components: {
