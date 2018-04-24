@@ -83,9 +83,6 @@ export function transformAcfProgram(program) {
 
   if (program.play_exact) {
     result.priority = 10;
-    result.schedule.startTime = '00:00';
-    result.schedule.endTime = '24:00';
-    result.schedule.days = ['sun', 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat'];
   }
 
   return result;
