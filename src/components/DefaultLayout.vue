@@ -103,11 +103,16 @@ h1 {
 .player {
   position: absolute;
   opacity: 1;
+  z-index: 1;
   transition: opacity 2s;
 }
 
 .inactive {
   opacity: 0;
   transition: opacity 2s;
+}
+
+.inactive.player {
+  z-index: 0;
 }
 </style>
