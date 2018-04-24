@@ -52,7 +52,10 @@ export default class Rotater extends Eventable {
 
       if (newIndex >= 0) {
         this.currentIndex = newIndex;
-        return;
+
+        if (this.timer) {
+          return;
+        }
       }
     }
 
