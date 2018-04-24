@@ -1,8 +1,12 @@
 <template>
-  <DefaultLayout :programs="activePrograms" />
+  <div class="app">
+    <DebugPane :scheduler="scheduler" />
+    <DefaultLayout :programs="activePrograms" />
+  </div>
 </template>
 
 <script>
+import DebugPane from './components/DebugPane';
 import DefaultLayout from './components/DefaultLayout';
 import Scheduler from './services/scheduler/Scheduler';
 import { loadScreenInfo } from './utils/api';
@@ -24,6 +28,7 @@ export default {
     };
   },
   components: {
+    DebugPane,
     DefaultLayout,
   },
   mounted() {
