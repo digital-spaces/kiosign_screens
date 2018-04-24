@@ -6,7 +6,7 @@
   >
     <div v-if="!collapsed" class="contents">
       <div>
-        <b>Current Time:</b>
+        <b>Schedule Time:</b>
         <Clock :timeFunction="getScheduleTime" />
       </div>
 
