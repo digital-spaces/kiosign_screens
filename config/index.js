@@ -50,7 +50,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'screen-app',
-    assetsPublicPath: '/kiosign/wp-content/themes/kiosign-dev6/kiosign/',
+    assetsPublicPath: '<?php echo get_stylesheet_directory_uri(); ?>/kiosign/',
 
     /**
      * Source Maps
