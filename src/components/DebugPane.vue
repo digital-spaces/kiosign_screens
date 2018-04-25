@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="{ collapsed: collapsed }"
+    :class="{ collapsed: collapsed, 'debugPane': true }"
     @mouseover="expand"
     @mouseout="collapse"
   >
