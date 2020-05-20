@@ -58,7 +58,7 @@ export function transformAcfProgram(program) {
     type: 'iframe',
 
     // The URL to the content
-    url: program.content && fixGuidHack(program.content.guid),
+    url: program.content && (fixGuidHack(program.content.guid).replace(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}/, document.location.origin)),
 
     priority: program.priority,
 
