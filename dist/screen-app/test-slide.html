@@ -1,0 +1,16 @@
+<html>
+<body bgcolor="#fff">
+  <h1>Test Slide</h1>
+
+  <b>URL: <script>document.write(location)</script>
+
+<script>
+/* eslint-disable */
+var color = location.search && location.search.substring(1);
+
+if (color) {
+  document.body.setAttribute('bgcolor', color);
+}
+</script>
+</body>
+</html>
