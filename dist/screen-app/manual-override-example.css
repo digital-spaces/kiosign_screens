@@ -1,0 +1,14 @@
+/* Rename this file to be manual-override.css and then it will be included in the screen page and
+ * will not be overridden by future updates (i.e.. `manual-override.css` is not kept in the kiosigns
+ * front-end app source control or included in any build, so you're safe editing it)
+ */
+body {
+}
+
+/* Uncomment this to prevent the debugPane from ever being displayed
+
+.debugPane {
+  display: none;
+}
+
+*/
